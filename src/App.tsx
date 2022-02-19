@@ -1,10 +1,23 @@
-import { useState } from 'react';
-
 import logo from './logo.svg';
 import './App.css';
+import { useNumber } from './hooks/01-useNumber';
+import { useEventListener } from './hooks/08-useEventListener';
 
 function App() {
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useNumber(20);
+
+  useEventListener(
+    'keydown',
+    (e) => {
+      if (e.key === 'Enter') {
+        console.log('enter was pressed');
+      }
+    },
+    {
+      enabled: true,
+      target: window,
+    },
+  );
 
   return (
     <div className="App">
